@@ -1,0 +1,62 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+    <h1>Contact Page</h1>
+
+    <div class="container">
+        Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Accusamus
+        accusantium ad aliquid commodi cum explicabo in iure, laboriosam laborum
+        magnam necessitatibus officiis perferendBeatae deserunt dolores eum
+        exercitationem ipsa
+        molestiae necessitatibus odit officia possimus repellat reprehenderit
+    </div>
+    <div class="container">
+        <form action="/contact" method="POST">
+            {% if success %}
+            <div class="alert alert-success">
+                {{ success }}
+            </div>
+            {% endif %}
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+            <div class="mb-3">
+                <label for="email">Votre email : </label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                {% if formError.email %}
+                    <ul  class="error">
+                        <li>{{ formError.email.message }}</li>
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label for="subject">Sujet : </label>
+                <input type="subject" name="subject" class="form-control" id="subject" placeholder="Sujet">
+                {% if formError.subject %}
+                    <ul  class="error">
+                        <li>{{ formError.subject.message }}</li>
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label for="message">Message : </label>
+                <textarea  class="form-control" id="message" name="message" rows="4">Votre message ici ...
+                </textarea>
+                {% if formError.message %}
+                    <ul class="error">
+                        <li>{{ formError.message.message }}</li>
+                    </ul>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-lg btn-success btn-block mb-3">
+                Envoyer le message
+            </button>
+        </form>
+    </div>
+{% endblock content %}
+
